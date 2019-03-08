@@ -1,7 +1,7 @@
 <template>
   <div class="page2">
-    <h1 v-if="title.length > 0">
-      {{ title }}
+    <h1 v-if="title.length > 0" v-bind:title="title">
+      { title }}
     </h1>
     <h1 v-else>
       Title is empty...
@@ -21,6 +21,14 @@ export default {
   methods: {
     clear() {
       this.title = "";
+    }
+  },
+  computed: {
+    reverseTitle: function() {
+      return this.title
+        .split("")
+        .reverse()
+        .join("");
     }
   }
 };

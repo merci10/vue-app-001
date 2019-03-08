@@ -6,15 +6,13 @@
     <h2>Products</h2>
     <ul>
       <li>
-        iPhoneXR<br>
+        iPhoneXR<br />
         <button type="button" @click="countUp()">add</button>
       </li>
     </ul>
     <div>----------------------------------------------------------------</div>
     <ul>
-      <li v-if="count > 0">
-        iPhoneXR x{{ count }}
-      </li>
+      <li v-if="count > 0">iPhoneXR x{{ count }}</li>
     </ul>
   </div>
 </template>
@@ -45,7 +43,7 @@ li {
 }
 
 li::before {
-  content: '・';
+  content: "・";
   display: inline-block;
 }
 </style>
