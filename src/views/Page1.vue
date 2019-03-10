@@ -5,14 +5,15 @@
     <div>----------------------------------------------------------------</div>
     <h2>Products</h2>
     <ul>
-      <li>
-        iPhoneXR<br />
-        <button type="button" @click="countUp()">add</button>
+      <li v-for="product in products" :key="product.id">
+        {{ product.name }}<br />
+        <button type="button" @click="addItemToCart(product)">add</button>
       </li>
     </ul>
     <div>----------------------------------------------------------------</div>
+    <h2>Your Cart</h2>
     <ul>
-      <li v-if="count > 0">iPhoneXR x{{ count }}</li>
+      <li v-for="item in cart" :key="item.product_id">{{ item.name }} x{{ item.count }} -- {{ item.price }}$</li>
     </ul>
   </div>
 </template>
@@ -21,15 +22,22 @@
 export default {
   data() {
     return {
-      count: 0
-    };
+      products: [{id: 1, name: 'iPhone XR', price: 890.2, stock: 5}, {id: 2, name: 'Pixel 3 XL', price: 649, stock: 10}],
+      cart: [],
+    }
   },
   methods: {
-    countUp() {
-      this.count++;
-    }
-  }
-};
+    addItemToCart(product) {
+      const cart_item = {
+        product_id: product.id,
+        name: product.name,
+        count: 1,
+        price: product.price,
+      }
+      this.cart.push(cart_item)
+    },
+  },
+}
 </script>
 
 <style scoped>
@@ -38,12 +46,11 @@ ul {
 }
 
 li {
-  display: inline-block;
   list-style-type: disc;
 }
 
 li::before {
-  content: "・";
+  content: '・';
   display: inline-block;
 }
 </style>

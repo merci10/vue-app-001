@@ -1,7 +1,7 @@
 <template>
   <div class="page2">
     <h1 v-if="title.length > 0" v-bind:title="title">
-      { title }}
+      {{ reverseTitle }}
     </h1>
     <h1 v-else>
       Title is empty...
@@ -15,21 +15,21 @@
 export default {
   data() {
     return {
-      title: "This is a sample Page2"
-    };
+      title: 'This is a sample Page2',
+    }
   },
   methods: {
     clear() {
-      this.title = "";
-    }
+      this.title = ''
+    },
   },
   computed: {
     reverseTitle: function() {
       return this.title
-        .split("")
+        .split('')
         .reverse()
-        .join("");
-    }
-  }
-};
+        .join('')
+    },
+  },
+}
 </script>
