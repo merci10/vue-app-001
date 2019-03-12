@@ -20,28 +20,20 @@
 </template>
 
 <script>
+import store from '@/store'
+
 export default {
-  data() {
-    return {
-      products: [{id: 1, name: 'iPhone XR', price: 890.2, stock: 5}, {id: 2, name: 'Pixel 3 XL', price: 649, stock: 10}],
-      cart: {id: 1, items: [], total: 0},
-    }
+  computed: {
+    products: () => {
+      return store.state.products
+    },
+    cart: () => {
+      return store.state.cart
+    },
   },
   methods: {
     addItemToCart(product) {
-      const cartItem = this.cart.items.find(item => item.id === product.id)
-      if (cartItem) {
-        cartItem.count++
-      } else {
-        this.cart.items.push({
-          id: product.id,
-          name: product.name,
-          price: product.price,
-          count: 1,
-        })
-      }
-      product.stock--
-      this.cart.total += product.price
+      store.commit('addItemToCart', product)
     },
   },
 }
