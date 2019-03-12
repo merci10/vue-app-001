@@ -7,14 +7,15 @@
     <ul>
       <li v-for="product in products" :key="product.id">
         {{ product.name }}<br />
-        <button type="button" @click="addItemToCart(product)">add</button>
+        <button type="button" @click="addItemToCart(product)" :disabled="!product.stock">add</button>
       </li>
     </ul>
     <div>----------------------------------------------------------------</div>
     <h2>Your Cart</h2>
     <ul>
-      <li v-for="item in cart" :key="item.product_id">{{ item.name }} x{{ item.count }} -- {{ item.price }}$</li>
+      <li v-for="item in cart.items" :key="item.id">{{ item.name }} x{{ item.count }} -- ${{ item.price }}</li>
     </ul>
+    <p>Total: ${{ cart.total }}</p>
   </div>
 </template>
 
@@ -23,18 +24,24 @@ export default {
   data() {
     return {
       products: [{id: 1, name: 'iPhone XR', price: 890.2, stock: 5}, {id: 2, name: 'Pixel 3 XL', price: 649, stock: 10}],
-      cart: [],
+      cart: {id: 1, items: [], total: 0},
     }
   },
   methods: {
     addItemToCart(product) {
-      const cart_item = {
-        product_id: product.id,
-        name: product.name,
-        count: 1,
-        price: product.price,
+      const cartItem = this.cart.items.find(item => item.id === product.id)
+      if (cartItem) {
+        cartItem.count++
+      } else {
+        this.cart.items.push({
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          count: 1,
+        })
       }
-      this.cart.push(cart_item)
+      product.stock--
+      this.cart.total += product.price
     },
   },
 }
