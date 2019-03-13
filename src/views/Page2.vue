@@ -24,7 +24,7 @@ export default {
     },
   },
   computed: {
-    reverseTitle: () => {
+    reverseTitle() {
       return this.title
         .split('')
         .reverse()

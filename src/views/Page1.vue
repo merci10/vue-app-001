@@ -20,20 +20,18 @@
 </template>
 
 <script>
-import store from '@/store'
-
 export default {
   computed: {
-    products: () => {
-      return store.state.products
+    products() {
+      return this.$store.state.products
     },
-    cart: () => {
-      return store.state.cart
+    cart() {
+      return this.$store.state.cart
     },
   },
   methods: {
     addItemToCart(product) {
-      store.commit('addItemToCart', product)
+      this.$store.commit('addItemToCart', product)
     },
   },
 }
