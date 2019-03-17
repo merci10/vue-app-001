@@ -5,7 +5,7 @@
     <div>----------------------------------------------------------------</div>
     <h2>Products</h2>
     <ul>
-      <li v-for="product in products" :key="product.id">
+      <li v-for="product in allProducts" :key="product.id">
         {{ product.name }}<br />
         <button type="button" @click="addItemToCart(product)" :disabled="!product.stock">add</button>
       </li>
@@ -20,19 +20,14 @@
 </template>
 
 <script>
+import {mapGetters, mapMutations} from 'vuex'
+
 export default {
   computed: {
-    products() {
-      return this.$store.state.products
-    },
-    cart() {
-      return this.$store.state.cart
-    },
+    ...mapGetters(['allProducts', 'cart']),
   },
   methods: {
-    addItemToCart(product) {
-      this.$store.commit('addItemToCart', product)
-    },
+    ...mapMutations(['addItemToCart']),
   },
 }
 </script>

@@ -8,6 +8,10 @@ export default new Vuex.Store({
     products: [{id: 1, name: 'iPhone XR', price: 890.2, stock: 5}, {id: 2, name: 'Pixel 3 XL', price: 649, stock: 10}],
     cart: {id: 1, items: [], total: 0},
   },
+  getters: {
+    allProducts: state => state.products,
+    cart: state => state.cart,
+  },
   mutations: {
     addItemToCart(state, product) {
       const cartItem = state.cart.items.find(item => item.id === product.id)
