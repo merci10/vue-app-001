@@ -14,6 +14,7 @@ export default new Vuex.Store({
   },
   mutations: {
     addItemToCart(state, product) {
+      const targetProduct = state.products.find(item => item.id === product.id)
       const cartItem = state.cart.items.find(item => item.id === product.id)
       if (cartItem) {
         cartItem.count++
@@ -25,8 +26,8 @@ export default new Vuex.Store({
           count: 1,
         })
       }
-      product.stock--
       state.cart.total += product.price
+      targetProduct.stock--
     },
   },
   actions: {},
