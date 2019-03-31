@@ -7,7 +7,7 @@
     <ul>
       <li v-for="product in allProducts" :key="product.id">
         {{ product.name }}<br />
-        <button type="button" @click="addItemToCart(product)" :disabled="!product.stock">add</button>
+        <button type="button" @click="addProductToCart(product)" :disabled="!product.stock">add</button>
       </li>
     </ul>
     <div>----------------------------------------------------------------</div>
@@ -27,7 +27,7 @@ export default {
     ...mapGetters(['allProducts', 'cart']),
   },
   methods: {
-    ...mapMutations(['addItemToCart']),
+    ...mapMutations(['addProductToCart']),
   },
 }
 </script>
