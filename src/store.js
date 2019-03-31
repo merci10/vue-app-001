@@ -13,22 +13,27 @@ export default new Vuex.Store({
     cart: state => state.cart,
   },
   mutations: {
-    addProductToCart(state, product) {
-      const targetProduct = state.products.find(item => item.id === product.id)
-      const cartItem = state.cart.items.find(item => item.id === product.id)
-      if (cartItem) {
-        cartItem.count++
-      } else {
-        state.cart.items.push({
-          id: product.id,
-          name: product.name,
-          price: product.price,
-          count: 1,
-        })
-      }
-      state.cart.total += product.price
-      targetProduct.stock--
+    pushProductToCart(state, product) {
+      state.cart.items.push({
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        count: 1,
+      })
+    },
+    incrementItemCount(state, cartItem) {
+      cartItem.count++
     },
   },
-  actions: {},
+  actions: {
+    addProductToCart(context, product) {
+      const cartItem = context.state.cart.items.find(item => item.id === product.id)
+      const targetProduct = context.state.products.find(item => item.id === product.id)
+      if (cartItem) {
+        context.commit('incrementItemCount', cartItem)
+      } else {
+        context.commit('pushProductToCart', targetProduct)
+      }
+    },
+  },
 })
