@@ -21,7 +21,8 @@ export default new Vuex.Store({
         count: 1,
       })
     },
-    incrementItemCount(state, cartItem) {
+    incrementItemCount(state, productId) {
+      const cartItem = state.cart.items.find(item => item.id === productId)
       cartItem.count++
     },
   },
@@ -30,7 +31,7 @@ export default new Vuex.Store({
       const cartItem = context.state.cart.items.find(item => item.id === product.id)
       const targetProduct = context.state.products.find(item => item.id === product.id)
       if (cartItem) {
-        context.commit('incrementItemCount', cartItem)
+        context.commit('incrementItemCount', targetProduct.id)
       } else {
         context.commit('pushProductToCart', targetProduct)
       }
