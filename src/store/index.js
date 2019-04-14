@@ -3,13 +3,20 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+const productsModule = {
   state: {
     products: [{id: 1, name: 'iPhone XR', price: 890.2, inventory: 5}, {id: 2, name: 'Pixel 3 XL', price: 649, inventory: 10}],
-    cart: {id: 1, items: [], total: 0},
   },
   getters: {
     allProducts: state => state.products,
+  },
+}
+
+const cartModule = {
+  state: {
+    cart: {id: 1, items: [], total: 0},
+  },
+  getters: {
     cart: state => state.cart,
   },
   mutations: {
@@ -36,5 +43,12 @@ export default new Vuex.Store({
         context.commit('pushProductToCart', targetProduct)
       }
     },
+  },
+}
+
+export default new Vuex.Store({
+  modules: {
+    products: productsModule,
+    cart: cartModule,
   },
 })
