@@ -1,5 +1,4 @@
 export const cartModule = {
-  namespaced: true,
   state: {
     cart: {id: 1, items: [], total: 0},
   },
@@ -23,7 +22,7 @@ export const cartModule = {
   actions: {
     addProductToCart(context, product) {
       const cartItem = context.state.cart.items.find(item => item.id === product.id)
-      const targetProduct = context.state.products.find(item => item.id === product.id)
+      const targetProduct = context.rootState.products.all.find(item => item.id === product.id)
       if (cartItem) {
         context.commit('incrementItemCount', targetProduct.id)
       } else {
