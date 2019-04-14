@@ -7,7 +7,7 @@
     <ul>
       <li v-for="product in allProducts" :key="product.id">
         {{ product.name }}<br />
-        <button type="button" @click="addProductToCart(product)" :disabled="!product.stock">add</button>
+        <button type="button" @click="addProductToCart(product)" :disabled="!product.inventory">add</button>
       </li>
     </ul>
     <div>----------------------------------------------------------------</div>
