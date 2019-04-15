@@ -13,9 +13,9 @@
     <div>----------------------------------------------------------------</div>
     <h2>Your Cart</h2>
     <ul>
-      <li v-for="item in cart.items" :key="item.id">{{ item.name }} x{{ item.quantity }} -- ${{ item.price }}</li>
+      <li v-for="item in cartItems" :key="item.id">{{ item.name }} x{{ item.quantity }} -- ${{ item.price }}</li>
     </ul>
-    <p>Total: ${{ cart.total }}</p>
+    <p>Total: ${{ cartTotalPrice }}</p>
   </div>
 </template>
 
@@ -24,7 +24,7 @@ import {mapGetters, mapActions} from 'vuex'
 
 export default {
   computed: {
-    ...mapGetters(['allProducts', 'cart']),
+    ...mapGetters(['allProducts', 'cartItems', 'cartTotalPrice']),
   },
   methods: {
     ...mapActions(['addProductToCart']),

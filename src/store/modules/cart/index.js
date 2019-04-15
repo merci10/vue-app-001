@@ -1,14 +1,19 @@
 export const cartModule = {
   // cart: {id: 1, items: [], total: 0},
   state: {
-    cart: {id: 1, items: [], total: 0},
+    items: [],
   },
   getters: {
-    cart: state => state.cart,
+    cartItems: state => state.items,
+    cartTotalPrice: state => {
+      return state.items.reduce((total, product) => {
+        return total + product.price * product.quantity
+      }, 0)
+    },
   },
   mutations: {
     pushProductToCart(state, product) {
-      state.cart.items.push({
+      state.items.push({
         id: product.id,
         name: product.name,
         price: product.price,
@@ -16,13 +21,13 @@ export const cartModule = {
       })
     },
     incrementItemQuantity(state, productId) {
-      const cartItem = state.cart.items.find(item => item.id === productId)
+      const cartItem = state.items.find(item => item.id === productId)
       cartItem.quantity++
     },
   },
   actions: {
     addProductToCart(context, product) {
-      const cartItem = context.state.cart.items.find(item => item.id === product.id)
+      const cartItem = context.state.items.find(item => item.id === product.id)
       const targetProduct = context.rootState.products.all.find(item => item.id === product.id)
       if (cartItem) {
         context.commit('incrementItemQuantity', targetProduct.id)
