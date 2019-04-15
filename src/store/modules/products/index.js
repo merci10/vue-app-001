@@ -13,10 +13,11 @@ export const productsModule = {
     },
   },
   actions: {
-    getAllProducts(context) {
-      shop.getProducts(products => {
+    async getAllProducts(context) {
+      await shop.getProducts(products => {
         context.commit('setProducts', products)
       })
+      console.log('done getAllProducts')
     },
   },
 }
