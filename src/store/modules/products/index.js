@@ -1,4 +1,4 @@
-import shop from '@/api/shop'
+import shop from '../../../api/shop'
 
 export const productsModule = {
   state: {
