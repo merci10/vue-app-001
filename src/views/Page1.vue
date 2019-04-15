@@ -13,7 +13,7 @@
     <div>----------------------------------------------------------------</div>
     <h2>Your Cart</h2>
     <ul>
-      <li v-for="item in cart.items" :key="item.id">{{ item.name }} x{{ item.count }} -- ${{ item.price }}</li>
+      <li v-for="item in cart.items" :key="item.id">{{ item.name }} x{{ item.quantity }} -- ${{ item.price }}</li>
     </ul>
     <p>Total: ${{ cart.total }}</p>
   </div>

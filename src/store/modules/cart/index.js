@@ -1,4 +1,5 @@
 export const cartModule = {
+  // cart: {id: 1, items: [], total: 0},
   state: {
     cart: {id: 1, items: [], total: 0},
   },
@@ -11,12 +12,12 @@ export const cartModule = {
         id: product.id,
         name: product.name,
         price: product.price,
-        count: 1,
+        quantity: 1,
       })
     },
-    incrementItemCount(state, productId) {
+    incrementItemQuantity(state, productId) {
       const cartItem = state.cart.items.find(item => item.id === productId)
-      cartItem.count++
+      cartItem.quantity++
     },
   },
   actions: {
@@ -24,7 +25,7 @@ export const cartModule = {
       const cartItem = context.state.cart.items.find(item => item.id === product.id)
       const targetProduct = context.rootState.products.all.find(item => item.id === product.id)
       if (cartItem) {
-        context.commit('incrementItemCount', targetProduct.id)
+        context.commit('incrementItemQuantity', targetProduct.id)
       } else {
         context.commit('pushProductToCart', targetProduct)
       }
