@@ -29,6 +29,9 @@ export default {
   methods: {
     ...mapActions(['addProductToCart']),
   },
+  created() {
+    this.$store.dispatch('getAllProducts')
+  },
 }
 </script>
 

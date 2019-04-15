@@ -1,8 +1,22 @@
+import shop from '@/api/shop'
+
 export const productsModule = {
   state: {
-    all: [{id: 1, name: 'iPhone XR', price: 890.2, inventory: 5}, {id: 2, name: 'Pixel 3 XL', price: 649, inventory: 10}],
+    all: [],
   },
   getters: {
     allProducts: state => state.all,
+  },
+  mutations: {
+    setProducts(state, products) {
+      state.all = products
+    },
+  },
+  actions: {
+    getAllProducts(context) {
+      shop.getProducts(products => {
+        context.commit('setProducts', products)
+      })
+    },
   },
 }
