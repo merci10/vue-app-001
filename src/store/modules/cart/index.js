@@ -34,6 +34,8 @@ export const cartModule = {
       } else {
         context.commit('pushProductToCart', targetProduct)
       }
+      // İŒÉ‚ğˆê‚ÂŒ¸‚ç‚·
+      context.commit('decrementProductInventory', targetProduct.id)
     },
   },
 }
