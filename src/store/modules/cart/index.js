@@ -34,7 +34,7 @@ export const cartModule = {
       } else {
         context.commit('pushProductToCart', targetProduct)
       }
-      // �݌ɂ�����炷
+      // 在庫をひとつ減らす
       context.commit('decrementProductInventory', targetProduct.id)
     },
   },
