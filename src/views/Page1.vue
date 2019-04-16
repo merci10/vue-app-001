@@ -16,6 +16,7 @@
       <li v-for="item in cartItems" :key="item.id">{{ item.name }} x{{ item.quantity }} -- ${{ item.price }}</li>
     </ul>
     <p>Total: ${{ cartTotalPrice }}</p>
+    <button type="button" @click="checkout" :disabled="cartTotalPrice <= 0">checkout</button>
   </div>
 </template>
 
@@ -27,7 +28,7 @@ export default {
     ...mapGetters(['allProducts', 'cartItems', 'cartTotalPrice']),
   },
   methods: {
-    ...mapActions(['addProductToCart']),
+    ...mapActions(['addProductToCart', 'checkout']),
   },
   created() {
     this.$store.dispatch('getAllProducts')

@@ -24,6 +24,9 @@ export const cartModule = {
       const cartItem = state.items.find(item => item.id === productId)
       cartItem.quantity++
     },
+    setCartItems(state, items) {
+      state.items = items
+    },
   },
   actions: {
     addProductToCart(context, product) {
@@ -36,6 +39,10 @@ export const cartModule = {
       }
       // 在庫をひとつ減らす
       context.commit('decrementProductInventory', targetProduct.id)
+    },
+    checkout(context) {
+      context.commit('setCartItems', [])
+      console.log('pushed checkoutButton')
     },
   },
 }
