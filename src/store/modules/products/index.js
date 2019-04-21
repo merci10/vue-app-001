@@ -18,9 +18,9 @@ export const productsModule = {
   },
   actions: {
     async getAllProducts(context) {
-      await shop.getProducts(products => {
-        context.commit('setProducts', products)
-      })
+      const products = await shop.getProducts()
+      context.commit('setProducts', products)
+
       console.log('done getAllProducts')
     },
   },
