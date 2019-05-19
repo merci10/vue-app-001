@@ -32,7 +32,7 @@ export default {
     ...mapActions('cart', ['addProductToCart', 'checkout']),
   },
   created() {
-    this.$store.dispatch('products/getAllProducts')
+    this.$store.dispatch('products/pullAllProducts')
   },
 }
 </script>
