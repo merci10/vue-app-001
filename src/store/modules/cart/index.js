@@ -38,7 +38,7 @@ export const cartModule = {
         context.commit('pushProductToCart', targetProduct)
       }
       // 在庫をひとつ減らす
-      context.commit('decrementProductInventory', targetProduct.id)
+      context.commit('products/decrementProductInventory', targetProduct.id, {root: true})
     },
     checkout(context) {
       context.commit('setCartItems', [])
