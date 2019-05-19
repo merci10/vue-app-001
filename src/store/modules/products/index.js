@@ -1,6 +1,7 @@
 import shop from '../../../api/shop'
 
 export const productsModule = {
+  namespaced: true,
   state: {
     all: [],
   },

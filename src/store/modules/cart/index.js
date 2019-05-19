@@ -1,5 +1,5 @@
 export const cartModule = {
-  // cart: {id: 1, items: [], total: 0},
+  namespaced: true,
   state: {
     items: [],
   },
